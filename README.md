@@ -1,5 +1,13 @@
 # Luppa AI teste de Andre Emidio
 
+Redes Sociais
+
+[Linkedin](https://www.linkedin.com/in/andre-emidio)
+
+[Instagram](https://www.instagram.com/higialabs/)
+
+[Github](https://github.com/andreemidio/)
+
 Projeto para teste backend para a empresa Luppa AI
 
 Objetivos : Criar uma API para receber uma imagem em base64 e inferir que tipo de produto é, soja ou arvore.
