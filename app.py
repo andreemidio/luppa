@@ -1,9 +1,3 @@
-import json
-import os
-
-import jsonpickle
-from flask import Flask, Response, request
-import json
 import os
 
 import jsonpickle
@@ -20,11 +14,9 @@ app = Flask(__name__)
 # route http posts to this method
 @app.route('/api/predict', methods=['POST'])
 def predict():
-    image = json.loads(request.data)['image']
+    result = inference(data=request.json['image'])
 
-    inf = inference(data=image)
-
-    response_pickled = jsonpickle.encode({"result": inf})
+    response_pickled = jsonpickle.encode({"result": result})
 
     return Response(response=response_pickled, status=200, mimetype="application/json")
 
