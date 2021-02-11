@@ -1,0 +1,915 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+
+    <title>ScanAPI Report</title>
+    <meta name="description" content="ScanAPI Report" />
+    <meta name="author" content="scanapi/scanapi" />
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAB11BMVEX////8/Pzn6erKzdCyt7qkqq6dpKiepKilq660ubzN0NLq6+z9/f3e4OGXnqJzfYN4gYeIkJWUnKCaoaWUm5+GjpR3gIZ1foTk5ufN0dNyfIKQl5zQ1dfw8/T7/f3+///6/P3u8fLLz9KJkZbX2tvp6+ynrbH5+fn/z8r/ta7/tq//tq7/4t/19/iboqZ/iI3x8vK3vL99hYvy8vP/xsD/qaD/qqL/qqH/3Nl1f4XFycyWnaJueH6co6ecpKidpKmepamdpamepKlpc3qlq6/+/v69wcSZoKRrdXuLk5iAiI5/h41zfIJ5goiUm6BocnmTmp+do6fFycvX2du7wMO5vcCrsbXs7u6Ci5D4+fmCipDz9PXIzM7r7O35+vrq7O3w8fLHy87v8PFcZ26tsrb6+/vs7e68wMNbZm27v8Lm6Ol2f4XMz9H4+PmGj5Tb3d+5vsGfpant7u/e4OKSmZ7AxMeAiY7u8PC6v8G6v8Jud36EjJHy8/ONlJnDx8rZ3N2DjJF8hIp8hYuzuLzR1Nba3d/KztB8hYqyuLv8/f3a3d7V2Nr6+vr3+PiHj5SqsLTd3+DT1tiRmJ3o6epsdnz4+Pi4vcCPl5vQ09VveH/o6uunrbDz9PRPvQCIAAAAAWJLR0QAiAUdSAAAAAd0SU1FB+QHGRE1H+ztMTUAAAEqSURBVDjLY2AYWoCRiZmFlY2dg5OLmwebPC8fv4CgkLCwiKiYOJsEpryklLSMrJw8A4O8gqKSspgKuryqmJq6hqaWNhBoaeno6ukboCkwNDJmMDE1AwNzCwZuSys0BdY2tux29g62Dva2jva2TnrOLqjyrm627h6eXjbCNt5sPr5+/gGBQRiuVFcODpFmlA5lsA0Lj+DG4s1IJAVRNFAQHRMbh6wgPiExCUVBTHJKKrKCtPSMTBQFWdk5uXn5mUAFBYyehUURTMU+qIHNWFKaX1ZeAVRQWVRVXVNbV9+AFtbMjU3NDKEgExhaWhnamto70FzZ2dXdA1TQ29cP4vFMmBiJLUmETpo8JWoqA24wbXpk0AxX3PKuwjNnMeADrrPL8CtgUJ/DMDQBAC0gTAcOoWsNAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA3LTI1VDE1OjUzOjMxKzAyOjAwcHYhkAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNy0yNVQxNTo1MzozMSswMjowMAErmSwAAAAASUVORK5CYII=">
+</head>
+
+<body>
+    <style type="text/css">
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #eeeeee;
+            font-size: 18px;
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,
+                "Helvetica Neue", Arial, sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: #636c73;
+            font-weight: bold;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 21px;
+        }
+
+        details {
+            margin-top: 20px;
+            position: relative;
+        }
+
+        details div {
+            background-color: #f5f5f5;
+            padding: 20px 20px;
+            border-radius: 10px;
+        }
+
+        summary {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        table {
+            border-radius: 20px;
+        }
+
+        table,
+        td,
+        th {
+            border: 1px solid #ccc;
+            text-align: left;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: #f5f5f5;
+            text-align: center;
+            padding: 8px 10px;
+        }
+
+        td {
+            text-align: left;
+            padding: 8px 10px;
+        }
+
+        /* Wrapper */
+        .wrapper {
+            background-color: white;
+            border-radius: 8px;
+            padding-bottom: 20px;
+        }
+
+        /* END -- Wrapper */
+
+        /* Title */
+        .title {
+            border-bottom: 8px solid #eeeeee;
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        .title__name {
+            margin: 0 0 10px 0;
+            padding: 0;
+            font-size: 36px;
+            font-weight: 300;
+        }
+
+        .title__project {
+            font-weight: bold;
+            color: #F67164;
+        }
+
+        .title__overview {
+            padding: 0;
+            margin: 0;
+            font-size: 16px;
+            color: #636c73;
+            text-align: center;
+        }
+
+        /* END -- Title */
+
+        /* HEADER */
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header__image {
+            width: 250px;
+            margin: 20px 0;
+        }
+
+        .github {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .github__svg {
+            width: 30px;
+        }
+
+        .wrapper,
+        .header {
+            width: 1150px;
+            margin: auto;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .wrapper {
+                width: auto;
+                padding: 0 20px;
+            }
+        }
+
+        /* END -- HEADER */
+
+        /* Endpoint */
+        .endpoint {
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .endpoint__content {
+            padding: 0 30px;
+            height: 0;
+        }
+
+        .endpoint__response h3,
+        .endpoint__request h3,
+        .endpoint__tests h3 {
+            text-transform: uppercase;
+            margin: 20px 0;
+            display: inline-block;
+            border-radius: 10px;
+        }
+
+        .endpoint__operationTitle {
+            margin: 20px 0;
+        }
+
+        .endpoint__title {
+            background-color: #f5f5f5;
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-size: 20px;
+            display: block;
+            cursor: pointer;
+            margin: 0 20px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .endpoint__url {
+            line-break: anywhere;
+        }
+
+        .http_method {
+            font-weight: bold;
+        }
+
+        .endpoint__titleInfo {
+            display: flex;
+            line-height: 22px;
+        }
+
+        .endpoint__status {
+            margin-left: 10px;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 100px;
+            text-align: center;
+            color: white;
+            font-size: 14px;
+            line-height: 20px;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .endpoint__status--P {
+            background-color: green;
+        }
+
+        .endpoint__status--F {
+            background-color: red;
+        }
+
+        .endpoint__titleInfo::after {
+            content: "\276F";
+            width: 1em;
+            height: 1em;
+            margin-left: 5px;
+            text-align: right;
+            transition: all 0.35s;
+            color: #636c73;
+        }
+
+        .endpoint__checkbox {
+            position: absolute;
+            opacity: 0;
+            z-index: -1;
+        }
+
+        .endpoint__checkbox:checked+.endpoint__title .endpoint__titleInfo::after {
+            transform: rotate(90deg);
+        }
+
+        .endpoint__checkbox:checked~.endpoint__content {
+            height: auto;
+        }
+
+        .endpoint__tests {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .endpoint__testcase {
+            display: flex;
+            flex-direction: row;
+            padding: 10px 0;
+        }
+
+        .endpoint__testcaseStatus {
+            width: 10%;
+        }
+
+        .endpoint__testcaseLabel {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .endpoint__testcase-failure {
+            padding: 10px 0;
+        }
+
+        .endpoint__testcase-passed {
+            color: green;
+        }
+
+        .endpoint__testcase-failed,
+        .endpoint__testcase-error {
+            color: red;
+        }
+
+        /* END -- ENDPOINT */
+
+        /* TESTS SUMMARY */
+        .tests__summary {
+            background: #f9f9f9;
+            padding: 10px 12px;
+            margin: 0 20px;
+            display: flex;
+            flex-direction: column;
+            border-radius: 10px;
+            border: solid;
+            border-width: 1px;
+        }
+
+        .tests__summary--passed {
+            border-color: green;
+        }
+
+        .tests__summary--failed {
+            border-color: red;
+        }
+
+        .tests__summaryTitle {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .tests__summaryResults {
+            margin-bottom: 21px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* END TESTS SUMMARY */
+
+        /* START RENDERJSON */
+        .json-body{
+            padding: 0;
+            margin: 0;
+        }
+        /* END RENDERJSON */
+
+        /* START SNIPPET CONTENT */
+        .snippet__content{
+            background-color: #eeeeee;
+            white-space: break-spaces;
+            padding: 20px 40px 20px 10px;
+            font-size: 16px;
+        }
+
+        .snippet__content a{
+            text-decoration: none;
+        }
+
+        .copy__snippet{
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        .copy__snippet{
+            position: absolute;
+            top: 42px;
+            right: 10px;
+            background-color: #C6C4C4;
+            border-radius: 2px;
+            font-size: 18px;
+            width: 25px;
+            height: 23px;
+            cursor: pointer;
+            -webkit-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            -o-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+
+        .copy__snippet:hover{
+            background-color: #D6D8D6;
+        }
+
+        .copy__snippet:focus{
+            outline: none;
+        }
+
+        .bg_green{
+            background-color: green!important;
+            color: white;
+        }
+        /* END SNIPPET CONTENT */
+    </style>
+
+    <div class="header">
+        <img class="header__image" src="https://scanapi.s3.us-east-2.amazonaws.com/assets/images/logos/scanapi-no-background.png" />
+    </div>
+
+    <div class="wrapper">
+        <header class="title">
+            
+            <h1 class="title__name">Report generated for your API</h1>
+            
+            <p class="title__overview">Generated at: 2021-02-11 08:37:50</p>
+        </header>
+
+        <!-- summary_box -->
+
+        
+        
+        
+        
+
+        <div class="endpoint">
+            <input type="checkbox" class="endpoint__checkbox" id="chck_1" />
+            <label class="endpoint__title" for="chck_1">
+                <span class="endpoint__url"><span class="http_method">GET</span> /</span>
+                <span class="endpoint__titleInfo">
+                    404
+                    <span class="endpoint__status endpoint__status--P">
+                        P
+                    </span>
+                </span>
+            </label>
+
+            <div class="endpoint__content">
+                <section class="endpoint__request">
+                    <h3>Request</h3>
+                    <p>Full URL: <a href="http://127.0.0.1:5000/"> http://127.0.0.1:5000/</a></p>
+
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    Header
+                                </th>
+                                <th>
+                                    Value
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>
+                                    User-Agent
+                                </td>
+                                <td>
+                                    python-requests/2.25.1
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Accept-Encoding
+                                </td>
+                                <td>
+                                    gzip, deflate
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Accept
+                                </td>
+                                <td>
+                                    */*
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Connection
+                                </td>
+                                <td>
+                                    keep-alive
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    
+
+                    
+
+                    <details>
+                        <summary>cURL</summary>
+                        <pre>curl -X GET -H 'Accept: */*' -H 'Accept-Encoding: gzip, deflate' -H 'Connection: keep-alive' -H 'User-Agent: python-requests/2.25.1' http://127.0.0.1:5000/</pre>
+                        <button class="copy__snippet">&#10063;</button>
+                    </details>
+                </section>
+
+                <section class="endpoint__response">
+                    <h3>Response</h3>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    status code
+                                </td>
+                                <td>
+                                    404
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    response time
+                                </td>
+                                <td>
+                                    0.006773 s
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    redirect
+                                </td>
+                                <td>
+                                    False
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    
+                    <details>
+                        <summary>Headers</summary>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Header
+                                    </th>
+                                    <th>
+                                        Value
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Content-Type
+                                    </td>
+                                    <td>
+                                        text/html; charset=utf-8
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Content-Length
+                                    </td>
+                                    <td>
+                                        232
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Server
+                                    </td>
+                                    <td>
+                                        Werkzeug/1.0.1 Python/3.8.6
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Date
+                                    </td>
+                                    <td>
+                                        Thu, 11 Feb 2021 11:37:51 GMT
+                                    </td>
+                                </tr>
+                            </tbody>
+                            
+                        </table>
+                    </details>
+
+                    <details>
+                        <summary>Content</summary>
+                        <p class="json-body">
+                             <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>
+ 
+                        </p>
+                        <button class="copy__snippet">&#10063;</button>
+                    </details>
+                    
+                </section>
+
+                <section class="endpoint__tests">
+                    <h3>Tests</h3>
+                    <div class="endpoint__testcase">
+                        <div class="endpoint__testcaseStatus">
+                            <strong class="endpoint__testcase-passed">
+                                [PASSED]
+                            </strong>
+                        </div>
+                        <div class="endpoint__testcaseLabel">
+                            <span>
+                                Luppa AI Test::home::status_code_is_404
+                            </span>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <section>
+            </div>
+        </div>
+        
+        
+        
+        
+
+        <div class="endpoint">
+            <input type="checkbox" class="endpoint__checkbox" id="chck_2" />
+            <label class="endpoint__title" for="chck_2">
+                <span class="endpoint__url"><span class="http_method">POST</span> /api/predict</span>
+                <span class="endpoint__titleInfo">
+                    200
+                    <span class="endpoint__status endpoint__status--P">
+                        P
+                    </span>
+                </span>
+            </label>
+
+            <div class="endpoint__content">
+                <section class="endpoint__request">
+                    <h3>Request</h3>
+                    <p>Full URL: <a href="http://127.0.0.1:5000/api/predict"> http://127.0.0.1:5000/api/predict</a></p>
+
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    Header
+                                </th>
+                                <th>
+                                    Value
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>
+                                    User-Agent
+                                </td>
+                                <td>
+                                    python-requests/2.25.1
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Accept-Encoding
+                                </td>
+                                <td>
+                                    gzip, deflate
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Accept
+                                </td>
+                                <td>
+                                    */*
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Connection
+                                </td>
+                                <td>
+                                    keep-alive
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Content-Length
+                                </td>
+                                <td>
+                                    6869
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Content-Type
+                                </td>
+                                <td>
+                                    application/json
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    
+
+                    
+                    <details>
+                        <summary>Body</summary>
+                        <p>b'{"image": "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"}'</p>
+                    </details>
+                    
+
+                    <details>
+                        <summary>cURL</summary>
+                        <pre>curl -X POST -H 'Accept: */*' -H 'Accept-Encoding: gzip, deflate' -H 'Connection: keep-alive' -H 'Content-Length: 6869' -H 'Content-Type: application/json' -H 'User-Agent: python-requests/2.25.1' -d '{"image": "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"}' http://127.0.0.1:5000/api/predict</pre>
+                        <button class="copy__snippet">&#10063;</button>
+                    </details>
+                </section>
+
+                <section class="endpoint__response">
+                    <h3>Response</h3>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    status code
+                                </td>
+                                <td>
+                                    200
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    response time
+                                </td>
+                                <td>
+                                    0.361135 s
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    redirect
+                                </td>
+                                <td>
+                                    False
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    
+                    <details>
+                        <summary>Headers</summary>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Header
+                                    </th>
+                                    <th>
+                                        Value
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Content-Type
+                                    </td>
+                                    <td>
+                                        application/json
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Content-Length
+                                    </td>
+                                    <td>
+                                        18
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Server
+                                    </td>
+                                    <td>
+                                        Werkzeug/1.0.1 Python/3.8.6
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        Date
+                                    </td>
+                                    <td>
+                                        Thu, 11 Feb 2021 11:37:51 GMT
+                                    </td>
+                                </tr>
+                            </tbody>
+                            
+                        </table>
+                    </details>
+
+                    <details>
+                        <summary>Content</summary>
+                        <p class="json-body">
+                             {"result": "Soil"} 
+                        </p>
+                        <button class="copy__snippet">&#10063;</button>
+                    </details>
+                    
+                </section>
+
+                <section class="endpoint__tests">
+                    <h3>Tests</h3>
+                    <div class="endpoint__testcase">
+                        <div class="endpoint__testcaseStatus">
+                            <strong class="endpoint__testcase-passed">
+                                [PASSED]
+                            </strong>
+                        </div>
+                        <div class="endpoint__testcaseLabel">
+                            <span>
+                                Luppa AI Test::Predict::Predict::status_code_is_200
+                            </span>
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <section>
+            </div>
+        </div>
+        
+
+        
+
+        <div class="tests__summary tests__summary--passed">
+            <h3 class="tests__summaryTitle">Tests Summary</h3>
+            <div class="tests__summaryResults">
+                <span><strong>PASSED:</strong> 2</span>
+                <span><strong>FAILURES:</strong> 0</span>
+                <span><strong>ERRORS:</strong> 0</span>
+                <span><strong>Total Time:</strong> 0:00:00.899056</span>
+            </div>
+        </div>
+
+        <a class="github" href="https://github.com/scanapi/scanapi"><img class="github__svg" src="https://scanapi.s3.us-east-2.amazonaws.com/assets/images/github/github-logo.svg" /></a>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/renderjson"></script>
+        <script>
+            renderjson.set_show_to_level(1);
+            renderjson.set_max_string_length(65);
+
+            const all_json_bodies = document.getElementsByClassName("json-body");
+
+            function tryParseJSON(string) {
+                try {
+                    var o = JSON.parse(string);
+                    if (o && typeof o === "object") {
+                        return o;
+                    }
+                }
+                catch (e) { console.log("Invalid JSON Body: " + e) }
+
+                return false;
+            };
+
+            for (var i = 0; i < all_json_bodies.length; i++) {
+                raw_json = all_json_bodies[i].innerText;
+                parsed_json = tryParseJSON(raw_json)
+
+                if (parsed_json) {
+                    all_json_bodies[i].innerText = '';
+                    all_json_bodies[i].appendChild(renderjson(parsed_json));
+                    all_json_bodies[i].firstElementChild.setAttribute('data-content', raw_json);
+                }
+            }
+            /*
+            * Adding class name of snippet__content to all pre elements
+            */
+            var pre_elements = document.querySelectorAll('pre');
+
+            for (var i = 0; i < pre_elements.length; i++){
+                pre_elements[i].classList.add('snippet__content');
+            }
+            /*
+            * Copying data to clipboard
+            */
+            var copy_snippet_button = document.querySelectorAll('.copy__snippet');
+
+            var copyToClipBoard = function(value, button) {
+                if ( value ){
+                    navigator.clipboard.writeText(value)
+                        .then(function(){
+                            console.log('Copied!');
+                            console.log(value)
+                            button.classList.add('bg_green')
+
+                            setTimeout(function(){
+                                button.classList.remove('bg_green')
+                            }, 180);
+                        })
+                        .catch(function(err){
+                            console.log('Something went wrong', err);
+                        })
+                }
+            }
+
+            copy_snippet_button.forEach(function(elem){
+                elem.addEventListener('click', function(evt){
+                    var sibling_element = this.previousElementSibling;
+                    var _this_button = this;
+                    if ( sibling_element.className == 'snippet__content' ){
+                        var content = sibling_element.textContent.trim();
+                        copyToClipBoard(content, _this_button)
+                    } else {
+                        var child_element = sibling_element.children[0];
+                        var content = child_element.getAttribute('data-content').trim()
+                        copyToClipBoard(content, _this_button)
+                    }
+                })
+            })
+        </script>
+</body>
+
+</html>
