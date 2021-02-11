@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 # route http posts to this method
 @app.route('/api/predict', methods=['POST'])
-def predict():
+def predict() -> str:
     result = inference(data=request.json['image'])
 
     response_pickled = jsonpickle.encode({"result": result})
